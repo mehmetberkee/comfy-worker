@@ -1,14 +1,11 @@
 FROM ghcr.io/ai-dock/comfyui:v2-cuda-12.1.1-base-22.04-v0.2.7
 
-# Volümdeki modeller / custom_nodes’ı bağla
-RUN ln -s /workspace/models        /opt/ComfyUI/models && \
-    ln -s /workspace/custom_nodes  /opt/ComfyUI/custom_nodes && \
-    ln -s /workspace/workflows     /opt/ComfyUI/workflows
+# Gereksiz servisleri kapat
+ENV CF_QUICK_TUNNELS=false \
+    WEB_ENABLE_AUTH=false \
+    SERVICEPORTAL_PORT_HOST=0
 
-# Gateway + şifreyi kapat
-ENV SECURITY_MODE=none
-ENV GATEWAY_ENABLE=false
-
-# ComfyUI’yi 0.0.0.0:8188’de ayağa kaldır
-ENV COMFYUI_HOST=0.0.0.0
-ENV COMFYUI_PORT_HOST=8188
+# Kalıcı diski ComfyUI’nin beklediği yere bağla
+# /workspace/ComfyUI  →  /opt/ComfyUI
+RUN rm -rf /opt/ComfyUI && \
+    ln -s /workspace/ComfyUI /opt/ComfyUI
