@@ -1,5 +1,4 @@
-FROM ghcr.io/runpod/comfyui:latest
-
+FROM ghcr.io/ai-dock/comfyui:v2-cuda-12.1.1-base-22.04-v0.2.7
 # Gerekli custom-nodes
 RUN git clone --depth 1 https://github.com/rgthree/ComfyUI-RGthree \
         /opt/ComfyUI/custom_nodes/ComfyUI-RGthree \
