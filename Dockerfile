@@ -1,4 +1,4 @@
-FROM runpod/comfyui:latest
+FROM ghcr.io/runpod/comfyui:latest
 
 # Gerekli custom-nodes
 RUN git clone --depth 1 https://github.com/rgthree/ComfyUI-RGthree \
